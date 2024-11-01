@@ -1,0 +1,43 @@
+{% extends "registration/base.html" %}
+{% load crispy_forms_tags %}
+ {% block title %}{%block title-meta%}
+ ایجاد محصول-کفش
+ {% endblock %}
+ {% endblock %}
+{% block main %}
+    <div class="col-md-12">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title mb-0 float-left">
+              افزودن صفات کفش
+          </h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <form  method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+
+
+            <div class="col-6">
+              {{form.count|as_crispy_field}}
+            </div>
+            <div class="col-6">
+              {{form.sizeshose|as_crispy_field}}
+
+            </div>
+            <div class="col-6">
+              {{form.product|as_crispy_field}}
+            </div>
+
+
+
+
+          </div>
+          <button class="btn btn-info" name="button"> ایجاد کالا</button>
+        </form>
+
+      </div>
+    </div>
+
+{% endblock %}

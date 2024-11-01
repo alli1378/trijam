@@ -1,0 +1,57 @@
+{% extends "registration/base.html" %}
+{% load crispy_forms_tags %}
+ {% block title %}{%block title-meta%}
+ لیست مقالات
+ {% endblock %}
+ {% endblock %}
+{% block main %}
+    <div class="col-md-12">
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title mb-0 float-left">
+              افزودن مقاله
+          </h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <form  method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-6">
+              {{form.title|as_crispy_field}}
+            </div>
+            <div class="col-6">
+              {{form.language|as_crispy_field}}
+            </div>
+            <div class="col-12">
+              {{form.filesend|as_crispy_field}}
+            </div>
+            <div class="col-12">
+              {{form.filerisive|as_crispy_field}}
+            </div>
+            
+            <div class="col-6">
+              {{form.is_finished|as_crispy_field}}
+            </div>
+            <div class="col-6">
+              {{form.price|as_crispy_field}}
+            </div>
+              <div class="col-6">
+                {{form.customer|as_crispy_field}}
+              </div>
+              <div class="col-6">
+                {{form.author|as_crispy_field}}
+              </div>
+              <div class="col-6">
+                {{form.type|as_crispy_field}}
+              </div>
+
+          </div>
+          <button class="btn btn-info" name="button"> ارسال مقاله</button>
+
+        </form>
+
+      </div>
+    </div>
+
+{% endblock %}

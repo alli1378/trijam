@@ -1,0 +1,45 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{%block main2%}
+<div class="col-md-2">
+
+</div>
+<div class="col-md-8 " style="margin-top: 20rem;">
+  <div class="card card-primary">
+    <div class="card-header" style="background-color: #093264;height: 4rem; margin-bottom: 1rem;">
+      <h3 class="card-title mb-0 float-left" style="color: wheat; padding-top: 1rem;">
+          ترجمه
+      </h3>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <form  method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-6">
+            {{form.title|as_crispy_field}}
+          </div>
+          <div class="col-md-6">
+            {{form.language|as_crispy_field}}
+          </div>
+          <div class="col-md-6">
+            {{form.filesend|as_crispy_field}}
+          </div>
+          
+          
+          
+      </div>
+      <div class=""style="display: flex;justify-content: center;margin-bottom:10rem">
+        <button class="btn btn-info " name="button" >ثبت مقاله</button>
+    </div>
+
+
+    </form>
+
+  </div>
+</div>
+
+{%endblock%}

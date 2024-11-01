@@ -1,0 +1,63 @@
+{% extends "registration/base.html" %}
+{% block title %}
+لیست محصولات
+{% endblock %}
+{% block main %}
+      <div class="row">
+          <div class="col-12">
+            {% if translates %}
+              <div class="card">
+              <!-- /.card-header -->
+                <div class="card-body table-responsive p-0">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>عنوان مقاله</th>
+                        <th>نویسنده</th>
+                        <th>مشتری</th>
+                        <th>وضعیت انتشار</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for translate in translates %}
+                        <tr>
+                          <td>
+                            {% if user.is_superuser or user.is_translator %}
+                                <a href="{% url 'account:update-translate' translate.pk %}">
+
+                                    {{translate.title}}
+                                </a> 
+                            {%else%}   
+                                {{translate.title}}
+                            {% endif %}
+                          </td>
+                          <td>{{translate.author.get_full_name}}</td>
+                          <td>{{translate.customer.get_full_name}}</td>
+                          <td>
+                            {% if  translate.is_finished %}
+                              <span class="badge badge-success">منتشر شده</span>
+                            {% else %}
+                              <span class="badge badge-danger">پیشنویس</span>
+
+                            {% endif %}
+                            
+                                                        {% if translate.status  %}
+
+                            <a target="_blank" class="badge badge-info" href="{% url 'translate:detail' translate.slug %}">پیش نمایش مقاله در سایت</a>
+                            {% endif %}
+                            </td>
+                        </tr>
+                      {% endfor %}
+
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            {% else %}
+              <h3>محتوا برای نمایش وجود ندارد.</h3>
+            {% endif %}
+          </div>
+        </div>
+{% endblock %}
